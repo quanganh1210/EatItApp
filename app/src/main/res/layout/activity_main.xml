@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="40dp"
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:theme="@style/Theme.MaterialComponents.Light">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dip">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="279dp"
+            android:layout_height="223dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.454"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/logo" />
+
+        <TextView
+            android:id="@+id/txtSlogan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/roboto"
+            android:text="@string/slogan"
+            android:textColor="@color/mainColor"
+            android:textSize="23sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="20dip">-->
+
+<!--        <EditText-->
+<!--            android:id="@+id/edtPhone"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="60dp"-->
+<!--            android:background="@drawable/round_edittext"-->
+<!--            android:drawableStart="@drawable/ic_smartphone"-->
+<!--            android:drawablePadding="12dp"-->
+<!--            android:hint="Phone"-->
+<!--            android:inputType="textPersonName"-->
+<!--            android:maxEms="10"-->
+<!--            android:minEms="10"-->
+<!--            android:paddingStart="12dp"-->
+<!--            android:paddingEnd="12dp"-->
+<!--            android:textSize="20sp"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--        <EditText-->
+<!--            android:id="@+id/edtPassword"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="60dp"-->
+<!--            android:layout_marginTop="28dp"-->
+<!--            android:background="@drawable/round_edittext"-->
+<!--            android:drawableStart="@drawable/ic_password"-->
+<!--            android:drawablePadding="12dp"-->
+<!--            android:ems="10"-->
+<!--            android:hint="Password"-->
+<!--            android:inputType="textPersonName"-->
+<!--            android:paddingStart="12dp"-->
+<!--            android:paddingEnd="12dp"-->
+<!--            android:textSize="20sp"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/edtPhone" />-->
+
+<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dip"
+        android:id="@+id/inputParent">
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtLayoutPhone"
+            app:layout_constraintTop_toTopOf="@id/inputParent"
+            app:layout_constraintStart_toStartOf="@id/inputParent"
+            app:layout_constraintEnd_toEndOf="@id/inputParent"
+            app:startIconDrawable="@drawable/ic_smartphone"
+            app:errorEnabled="true"
+            app:errorIconDrawable="@drawable/ic_error">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Phone"
+                android:id="@+id/edtPhone"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:startIconDrawable="@drawable/ic_lock"
+            app:endIconMode="password_toggle"
+            app:layout_constraintEnd_toEndOf="@id/inputParent"
+            app:layout_constraintStart_toStartOf="@id/inputParent"
+            app:layout_constraintTop_toBottomOf="@id/txtLayoutPhone"
+            color>
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtPassword"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="textPassword"
+                android:hint="Password" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dip">
+
+        <TextView
+            android:id="@+id/txtCreateAccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="28dp"
+            android:text="Create"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@+id/txtAskAccount"
+            app:layout_constraintTop_toBottomOf="@+id/btnSignIn" />
+
+        <Button
+            android:id="@+id/btnSignIn"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/round_button"
+            android:fontFamily="@font/roboto"
+            android:text="Sign in"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.526"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+<!--            app:layout_constraintTop_toBottomOf="@+id/edtPassword" -->
+
+        <TextView
+            android:id="@+id/txtAskAccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:fontFamily="@font/roboto"
+            android:text="Don't have an account?"
+            android:textColor="@color/darkGrey"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.217"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnSignIn" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</LinearLayout>

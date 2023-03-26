@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FoodDetail">
+
+<!--    <RatingBar-->
+<!--        style="@style/Widget.AppCompat.RatingBar.Indicator"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:isIndicator="true"-->
+<!--        android:numStars="5"-->
+<!--        android:stepSize="0.5"-->
+<!--        tools:layout_editor_absoluteX="16dp"-->
+<!--        tools:layout_editor_absoluteY="501dp" />-->
+
+    <TextView
+        android:id="@+id/txtDescription"
+        android:layout_width="359dp"
+        android:layout_height="wrap_content"
+        android:maxWidth="359dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/roboto_medium"
+
+        android:text="Description"
+        android:textColor="@color/txtLight"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtName" />
+
+    <ImageView
+        android:id="@+id/imgDD"
+        android:layout_width="410dp"
+        android:layout_height="371dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/category" />
+
+    <TextView
+        android:id="@+id/txtName"
+        android:layout_width="300dp"
+        android:maxWidth="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="Food name"
+        android:textColor="@color/txtRegular"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgDD" />
+
+
+    <LinearLayout
+        android:id="@+id/llPrice"
+        android:layout_width="162dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtDescription">
+
+        <ImageView
+            android:layout_width="30sp"
+            android:layout_height="30sp"
+            android:src="@drawable/ic_money" />
+
+        <TextView
+            android:id="@+id/txtDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_bold"
+            android:text="TextView"
+            android:textColor="@color/mainColor"
+            android:textSize="25sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="118dp"
+        android:layout_height="31dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.846"
+        app:layout_constraintStart_toEndOf="@+id/llPrice"
+        app:layout_constraintTop_toBottomOf="@+id/txtDescription">
+
+        <ImageButton
+            android:id="@+id/btnSubtractQuantity"
+            android:layout_width="30dip"
+            android:layout_height="30dip"
+            android:background="@drawable/minus_elegant_number_button"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_minus" />
+
+        <TextView
+            android:id="@+id/txtQuantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dip"
+            android:layout_marginRight="20dip"
+            android:text="1"
+            android:textSize="20sp" />
+
+        <ImageButton
+            android:id="@+id/btnAddQuantity"
+            android:layout_width="30dip"
+            android:layout_height="30dip"
+            android:background="@color/mainColor"
+            android:src="@drawable/ic_add" />
+
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnAddToCart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="344dp"
+        android:backgroundTint="@color/white"
+        android:clickable="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.954"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imgDD"
+        app:srcCompat="@drawable/ic_baseline_add_shopping_cart_24" />
+
+    <!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent">-->
+<!--        -->
+<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

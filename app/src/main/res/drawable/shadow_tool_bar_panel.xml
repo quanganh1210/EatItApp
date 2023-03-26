@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:drawable="@drawable/shadow_tool_bar"/>
+    <item>
+        <shape
+            android:layout_height="match_parent"
+            android:shape="rectangle">
+            <solid android:color="@color/white" />
+        </shape>
+    </item>
+
+</layer-list>

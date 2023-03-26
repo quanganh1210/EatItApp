@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:elevation="100dp"
+    app:cardCornerRadius="20dp"
+    android:layout_marginBottom="20dp"
+    android:id="@+id/parent"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/txtOrderID"
+            android:layout_width="153dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/roboto_bold"
+            android:maxWidth="153dp"
+            android:text="Order ID"
+            android:textColor="@color/txtBold"
+            android:textSize="20sp"
+
+            app:layout_constraintStart_toEndOf="@+id/imgReceipt"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <ImageView
+            android:id="@+id/imgReceipt"
+            android:layout_width="25dip"
+            android:layout_height="25dip"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/icon_receipt"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/llPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_money"
+                tools:layout_editor_absoluteX="303dp"
+                tools:layout_editor_absoluteY="21dp" />
+
+            <TextView
+                android:id="@+id/txtPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/roboto_bold"
+                android:text="TextView"
+                android:textColor="@color/txtRegular"
+                android:textSize="17sp"
+                tools:layout_editor_absoluteX="325dp"
+                tools:layout_editor_absoluteY="16dp" />
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txtDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/roboto_bold"
+            android:text="TextView"
+            android:textColor="@color/txtRegular"
+            android:textSize="17sp"
+            app:layout_constraintStart_toEndOf="@+id/imgReceipt"
+            app:layout_constraintTop_toBottomOf="@+id/txtOrderID" />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</androidx.cardview.widget.CardView>
