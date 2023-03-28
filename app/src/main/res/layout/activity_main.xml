@@ -7,7 +7,8 @@
     android:padding="40dp"
     tools:context=".MainActivity"
     android:orientation="vertical"
-    android:theme="@style/Theme.MaterialComponents.Light">
+    android:theme="@style/Theme.MaterialComponents.Light"
+    >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -23,7 +24,7 @@
             app:layout_constraintHorizontal_bias="0.454"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/logo" />
+            app:srcCompat="@drawable/logo_2" />
 
         <TextView
             android:id="@+id/txtSlogan"
@@ -99,13 +100,19 @@
             app:layout_constraintEnd_toEndOf="@id/inputParent"
             app:startIconDrawable="@drawable/ic_smartphone"
             app:errorEnabled="true"
-            app:errorIconDrawable="@drawable/ic_error">
+            app:errorIconDrawable="@drawable/ic_error"
+            app:boxStrokeColor="@color/mainColor"
+            app:hintTextColor="@color/mainColor"
+            app:startIconTint="@color/mainColor"
+            app:helperTextEnabled="true"
+            >
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="Phone"
                 android:id="@+id/edtPhone"
+                android:inputType="phone"
                 />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -119,14 +126,19 @@
             app:layout_constraintEnd_toEndOf="@id/inputParent"
             app:layout_constraintStart_toStartOf="@id/inputParent"
             app:layout_constraintTop_toBottomOf="@id/txtLayoutPhone"
-            color>
+            app:placeholderTextColor="@color/mainColor"
+            app:boxStrokeColor="@color/mainColor"
+            app:hintTextColor="@color/mainColor"
+            app:startIconTint="@color/mainColor"
+            >
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtPassword"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:inputType="textPassword"
-                android:hint="Password" />
+                android:hint="Password"
+                />
         </com.google.android.material.textfield.TextInputLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

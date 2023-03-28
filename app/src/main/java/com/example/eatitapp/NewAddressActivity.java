@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -36,6 +38,8 @@ public class NewAddressActivity extends AppCompatActivity {
     DatabaseReference tbAddress;
     //PlacesClient placesClient;
     String detail;
+    TextView txtToolBarTitle;
+    ImageView btnBack;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +50,17 @@ public class NewAddressActivity extends AppCompatActivity {
         txtExtraInfor = findViewById(R.id.txtExtraInfor);
         btnAdd = findViewById(R.id.btnAdd);
         tbAddress = FirebaseDatabase.getInstance().getReference("Address");
+
+        //Tool bar
+        txtToolBarTitle = findViewById(R.id.toolBarTitle);
+        btnBack = findViewById(R.id.btnBack);
+        txtToolBarTitle.setText("New address");
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         //Places API
         String apiKey = "AIzaSyBl3V6YriQBVBZrvPanhs47zLseoBStIQU";

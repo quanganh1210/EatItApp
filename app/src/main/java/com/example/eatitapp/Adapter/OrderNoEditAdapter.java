@@ -1,6 +1,7 @@
 package com.example.eatitapp.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,8 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.eatitapp.Model.Order;
+import com.example.eatitapp.Model.OrderDetail;
+import com.example.eatitapp.OrdderDetailActivity;
 import com.example.eatitapp.R;
 
 import java.util.ArrayList;
@@ -35,6 +38,15 @@ public class OrderNoEditAdapter extends RecyclerView.Adapter<OrderNoEditAdapter.
         holder.txtOrderID.setText(order.getOrderID());
         holder.txtDate.setText(order.getOrderDate());
         holder.txtPrice.setText(Float.toString(order.getTotalPrice()));
+
+        holder.parent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, OrdderDetailActivity.class);
+                intent.putExtra("OrderID", order.getOrderID());
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

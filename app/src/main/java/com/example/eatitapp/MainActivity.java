@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
                 ProgressDialog mDialog = new ProgressDialog(MainActivity.this);
                 mDialog.setMessage("Please waiting...");
                 mDialog.show();
-                table_user.addValueEventListener(new ValueEventListener() {
+                table_user.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if (snapshot.child(edtPhone.getText().toString()).exists()) {

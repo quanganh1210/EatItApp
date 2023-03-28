@@ -11,25 +11,34 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.eatitapp.Model.User;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.w3c.dom.Text;
+
 public class SignUp extends AppCompatActivity {
 
-    EditText edtName, edtPhone, edtPassword;
+    TextInputEditText edtName, edtPhone, edtPassword;
+    TextInputLayout txtLayoutPhone, txtLayoutName, txtLayoutPassword;
+    String phoneNumber, password, name;
     Button btnSignUp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        edtPassword = (EditText) findViewById(R.id.edtPassword);
-        edtPhone = (EditText) findViewById(R.id.edtPhone);
-        edtName = (EditText) findViewById(R.id.edtName);
-        btnSignUp = (Button) findViewById(R.id.btnSignUp);
+        edtPassword =  findViewById(R.id.edtPassword);
+        edtPhone =  findViewById(R.id.edtPhone);
+        edtName = findViewById(R.id.edtName);
+        btnSignUp = findViewById(R.id.btnSignUp);
+        txtLayoutPhone = findViewById(R.id.txtLayoutPhone);
+        txtLayoutPassword = findViewById(R.id.txtLayoutPassword);
+        txtLayoutName = findViewById(R.id.txtLayoutName);
 
         FirebaseDatabase db = FirebaseDatabase.getInstance();
         final DatabaseReference table_user = db.getReference("User");
@@ -40,8 +49,15 @@ public class SignUp extends AppCompatActivity {
                 ProgressDialog mDialog = new ProgressDialog(SignUp.this);
                 mDialog.setMessage("Please waiting...");
                 mDialog.show();
+                phoneNumber = edtPhone.getText().toString();
+                password = edtPassword.getText().toString();
+                name = edtName.getText().toString();
+                if(!validateForm()) {
+                    mDialog.dismiss();
+                    return;
+                }
 
-                table_user.addValueEventListener(new ValueEventListener() {
+                table_user.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if(snapshot.child(edtPhone.getText().toString()).exists()) {
@@ -64,7 +80,26 @@ public class SignUp extends AppCompatActivity {
                 });
             }
         });
-
-
+    }
+    private boolean validateForm() {
+        if(phoneNumber.isEmpty()) {
+            txtLayoutPhone.setError("Field can't be empty");
+            return false;
+        }
+        else
+            txtLayoutPhone.setError(null);
+        if(password.isEmpty()) {
+            txtLayoutPassword.setError("Field can't be empty");
+            return false;
+        }
+        else
+            txtLayoutPhone.setError(null);
+        if(name.isEmpty()) {
+            txtLayoutName.setError("Field can't be empty");
+            return false;
+        }
+        else
+            txtLayoutPhone.setError(null);
+        return true;
     }
 }

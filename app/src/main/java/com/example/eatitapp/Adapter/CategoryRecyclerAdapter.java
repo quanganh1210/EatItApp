@@ -2,6 +2,7 @@ package com.example.eatitapp.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,7 +50,10 @@ public class CategoryRecyclerAdapter extends RecyclerView.Adapter<CategoryRecycl
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, FoodList.class);
-                intent.putExtra("CategoryID", lstCategory.get(position).getCategoryID());
+                Bundle b = new Bundle();
+                b.putString("CategoryID", lstCategory.get(position).getCategoryID());
+                b.putString("CategoryName", lstCategory.get(position).getName());
+                intent.putExtras(b);
                 context.startActivity(intent);
 
             }

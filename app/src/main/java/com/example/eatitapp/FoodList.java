@@ -1,6 +1,10 @@
 package com.example.eatitapp;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -23,8 +27,11 @@ public class FoodList extends AppCompatActivity {
     DatabaseReference tbFood;
     RecyclerView recycler;
     String categoryID;
+    String categoryName;
     ArrayList<Food> lstFood;
     FoodRecyclerAdapter adapter;
+    TextView txtToolBarTitle;
+    ImageView btnBack;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,8 +42,32 @@ public class FoodList extends AppCompatActivity {
         recycler.setHasFixedSize(true);
         recycler.setLayoutManager(new LinearLayoutManager(this));
 
-        if(getIntent() != null)
-            categoryID = getIntent().getStringExtra("CategoryID");
+        //Tool bar
+        txtToolBarTitle = findViewById(R.id.toolBarTitle);
+        btnBack = findViewById(R.id.btnBack);
+        txtToolBarTitle.setText("Food");
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        categoryID = bundle.getString("CategoryID");
+        categoryName = bundle.getString("CategoryName");
+
+        //Tool bar
+        txtToolBarTitle = findViewById(R.id.toolBarTitle);
+        btnBack = findViewById(R.id.btnBack);
+        txtToolBarTitle.setText(categoryName);
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         if(!categoryID.isEmpty() && categoryID != null) {
             tbFood.orderByChild("categoryID").equalTo(categoryID).addValueEventListener(new ValueEventListener() {
@@ -51,7 +82,7 @@ public class FoodList extends AppCompatActivity {
                     adapter = new FoodRecyclerAdapter(FoodList.this);
                     adapter.setLstFood(lstFood);
                     recycler.setAdapter(adapter);
-                    Toast.makeText(FoodList.this, categoryID + " " + lstFood.size() + " " + adapter.getItemCount(), Toast.LENGTH_SHORT).show();
+
                 }
 
                 @Override

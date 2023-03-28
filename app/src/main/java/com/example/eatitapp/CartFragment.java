@@ -77,7 +77,7 @@ public class CartFragment extends Fragment {
 
         db = FirebaseDatabase.getInstance();
         request = db.getReference("Request");
-        txtAddressDetail = view.findViewById(R.id.txtAddressDetail);
+        txtAddressDetail = view.findViewById(R.id.txtDetail);
         txtAddressExtraInfor = view.findViewById(R.id.txtAddressExtraInfor);
         btnOrder = view.findViewById(R.id.btnSave);
         btnChangeAddress = view.findViewById(R.id.btnChangeAddress);
@@ -145,6 +145,10 @@ public class CartFragment extends Fragment {
                 }
                 else if(lstData.size() == 0) {
                     Toast.makeText(getContext(), "Your basket is empty", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                else if(Common.TotalPrice > Common.currentUser.getEatItCoin() && Common.payment.getName().equals("EatIt coin")) {
+                    Toast.makeText(getContext(), "Your EatIt coin is not enough", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if(Common.payment.getName().equals("EatIt coin")) {

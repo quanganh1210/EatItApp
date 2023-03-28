@@ -40,7 +40,7 @@ public class ChoosePaymentActivity extends AppCompatActivity {
         //Tool bar
         txtToolBarTitle = findViewById(R.id.toolBarTitle);
         btnBack = findViewById(R.id.btnBack);
-        txtToolBarTitle.setText("Addresses");
+        txtToolBarTitle.setText("Payment");
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

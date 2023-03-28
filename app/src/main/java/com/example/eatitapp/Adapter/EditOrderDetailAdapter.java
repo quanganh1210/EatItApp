@@ -25,14 +25,14 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class EditOrderRecyclerAdapter extends RecyclerView.Adapter<EditOrderRecyclerAdapter.ViewHolder> {
+public class EditOrderDetailAdapter extends RecyclerView.Adapter<EditOrderDetailAdapter.ViewHolder> {
     ArrayList<OrderDetail> lstData;
     Context context;
     Food food;
     int quantity;
     ChangeOrderItemQuantity changeOrderItemQuantity;
 
-    public EditOrderRecyclerAdapter(Context context, ChangeOrderItemQuantity changeOrderItemQuantity) {
+    public EditOrderDetailAdapter(Context context, ChangeOrderItemQuantity changeOrderItemQuantity) {
         this.context = context;
         this.changeOrderItemQuantity = changeOrderItemQuantity;
     }

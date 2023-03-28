@@ -65,7 +65,6 @@ public class OnGoingFragment extends Fragment {
                 Collections.sort(lstOrder, new Comparator<Order>() {
                     @Override
                     public int compare(Order o1, Order o2) {
-                        String dateInString = "Mar 23, 2023 5:44:19 PM";
                         SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d,yyyy h:m:s a");
                         try {
                             Date dateTime1 = dateFormat.parse(o1.getOrderDate());
@@ -79,7 +78,6 @@ public class OnGoingFragment extends Fragment {
                 });
                 adapter.setLstData(lstOrder);
                 recycler.setAdapter(adapter);
-
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {

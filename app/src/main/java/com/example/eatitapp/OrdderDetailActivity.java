@@ -1,21 +1,18 @@
 package com.example.eatitapp;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.eatitapp.Adapter.EditOrderDetailAdapter;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.example.eatitapp.Adapter.OrderDetailAdapter;
 import com.example.eatitapp.Common.Common;
-import com.example.eatitapp.Interface.ChangeOrderItemQuantity;
 import com.example.eatitapp.Model.Address;
 import com.example.eatitapp.Model.Order;
 import com.example.eatitapp.Model.OrderDetail;
@@ -28,8 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class EditOrderActivity extends AppCompatActivity {
-
+public class OrdderDetailActivity extends AppCompatActivity {
     TextView txtAddressDetail;
     TextView txtAddressInfor;
     TextView txtPaymentName;
@@ -38,8 +34,7 @@ public class EditOrderActivity extends AppCompatActivity {
     TextView txtDeliveryFee;
     TextView txtTotal;
     TextView toolBarTitle;
-    Button btnCancel;
-    Button btnSave;
+
 
     ImageView btnBack;
     String orderID;
@@ -49,12 +44,10 @@ public class EditOrderActivity extends AppCompatActivity {
     Address address;
     Payment payment;
     ArrayList<OrderDetail> lstData;
-    float oldTotalPrice;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_order);
+        setContentView(R.layout.activity_ordder_detail);
 
         Intent intent = getIntent();
         orderID = intent.getStringExtra("OrderID");
@@ -70,8 +63,6 @@ public class EditOrderActivity extends AppCompatActivity {
         txtSubtotal = findViewById(R.id.txtSubtotal);
         txtDeliveryFee = findViewById(R.id.txtDeliveryFee);
         txtTotal = findViewById(R.id.txtTotal);
-        btnCancel = findViewById(R.id.btnCancel);
-        btnSave = findViewById(R.id.btnSave);
 
         //Tool bar
         toolBarTitle = findViewById(R.id.toolBarTitle);
@@ -90,7 +81,6 @@ public class EditOrderActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 order = snapshot.child(orderID).getValue(Order.class);
                 order.setOrderID(orderID);
-                oldTotalPrice = order.getTotalPrice();
                 addressID = order.getAddressID();
                 paymentID = order.getPaymentID();
 
@@ -116,7 +106,7 @@ public class EditOrderActivity extends AppCompatActivity {
                 tbPayment.child(paymentID).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            payment = snapshot.getValue(Payment.class);
+                        payment = snapshot.getValue(Payment.class);
                         if (payment != null) {
                             txtPaymentName.setText(payment.getName());
                         }
@@ -143,16 +133,10 @@ public class EditOrderActivity extends AppCompatActivity {
                             orderDetail.setOrderDetailID(data.getKey());
                             lstData.add(orderDetail);
                         }
-                        EditOrderDetailAdapter editOrderRecyclerAdapter= new EditOrderDetailAdapter(EditOrderActivity.this, new ChangeOrderItemQuantity() {
-                            @Override
-                            public void updateOtderSummary(float unitSellingPrice) {
-                                order.setTotalPrice(order.getTotalPrice() + unitSellingPrice);
-                                loadOrderSummary();
-                            }
-                        });
+                        OrderDetailAdapter orderDetailAdapter= new OrderDetailAdapter(OrdderDetailActivity.this);
                         Common.lstOrderDetail = lstData;
-                        editOrderRecyclerAdapter.setLstData(lstData);
-                        recycler.setAdapter(editOrderRecyclerAdapter);
+                        orderDetailAdapter.setLstData(lstData);
+                        recycler.setAdapter(orderDetailAdapter);
                     }
 
                     @Override
@@ -166,44 +150,8 @@ public class EditOrderActivity extends AppCompatActivity {
 
             }
         });
-
-        btnCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
-        btnSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DatabaseReference tbOrderDetail = FirebaseDatabase.getInstance().getReference("OrderDetail");
-                if(payment.getName().equals("EatIt coin")) {
-                    float currentCoin = Common.currentUser.getEatItCoin();
-                    if(currentCoin + oldTotalPrice > order.getTotalPrice()) {
-                        Common.currentUser.setEatItCoin(currentCoin + oldTotalPrice - order.getTotalPrice());
-                        DatabaseReference tbUser = FirebaseDatabase.getInstance().getReference("User");
-                        String tempUserID = Common.currentUser.getPhone();
-                        Common.currentUser.setPhone(null);
-                        tbUser.child(tempUserID).setValue(Common.currentUser);
-                        Common.currentUser.setPhone(tempUserID);
-                    }
-                    else {
-                        Toast.makeText(EditOrderActivity.this, "You don't have enough EatIt coin (need more $"
-                                + Float.toString((currentCoin + oldTotalPrice - order.getTotalPrice()) * -1) + ")", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                }
-                tbOrder.child(order.getOrderID()).setValue(order);
-                for(OrderDetail orderDetail: Common.lstOrderDetail) {
-                    String tempKey = orderDetail.getOrderDetailID();
-                    orderDetail.setOrderDetailID(null);
-                    tbOrderDetail.child(tempKey).setValue(orderDetail);
-                }
-                finish();
-            }
-        });
     }
+
     public void loadOrderSummary() {
         txtSubtotal.setText(Float.toString(order.getTotalPrice() - order.getDeliveryFee()));
         txtDeliveryFee.setText(Float.toString(order.getDeliveryFee()));

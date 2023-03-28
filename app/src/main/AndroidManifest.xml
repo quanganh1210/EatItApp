@@ -11,8 +11,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EatItApp"
         tools:targetApi="31">
-
-
+        <activity
+            android:name=".EditAddressActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AddressActivity"
+            android:exported="false" />
+        <activity
+            android:name=".OrdderDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ChangePasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ChangeNameActivity"
+            android:exported="false" />
         <activity
             android:name=".EditOrderActivity"
             android:exported="false" />
@@ -60,7 +73,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
             android:name=".MainActivity"
             android:exported="true">
