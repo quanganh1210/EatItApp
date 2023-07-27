@@ -54,7 +54,7 @@ public class ChooseAddressRecyclerAdapter extends RecyclerView.Adapter<ChooseAdd
                 holder.radioButton.setChecked(address.getSelected());
             else if(address.getAddressID() == Common.deliveryAddress.getAddressID()) {
                 holder.radioButton.setChecked(true);
-                lastCheckedPosition = position;
+                lastCheckedPosition = holder.getPosition();
             }
         //}catch(Exception e) {
 //            Toast.makeText(context, e.toString(), Toast.LENGTH_LONG);
@@ -67,9 +67,9 @@ public class ChooseAddressRecyclerAdapter extends RecyclerView.Adapter<ChooseAdd
             public void onClick(View v) {
                 isNewRadioBtnChecked = true;
                 lstAddress.get(lastCheckedPosition).setSelected(false);
-                lstAddress.get(position).setSelected(true);
+                lstAddress.get(holder.getPosition()).setSelected(true);
                 Common.deliveryAddress = address;
-                lastCheckedPosition = position;
+                lastCheckedPosition = holder.getPosition();
                 //notifyDataSetChanged();
                 chooseAddressListener.changed(address);
             }

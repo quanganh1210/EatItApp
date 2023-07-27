@@ -46,7 +46,7 @@ public class FoodRecyclerAdapter extends RecyclerView.Adapter<FoodRecyclerAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Food food = lstFood.get(position);
+        Food food = lstFood.get(holder.getPosition());
         holder.txtName.setText(food.getName());
         holder.txtDescription.setText(food.getDescription());
         holder.txtPrice.setText(Float.toString(food.getPrice()));
@@ -56,7 +56,7 @@ public class FoodRecyclerAdapter extends RecyclerView.Adapter<FoodRecyclerAdapte
             @Override
             public void onClick(View v) {
                 Intent foodDetail = new Intent(context, FoodDetail.class);
-                foodDetail.putExtra("foodID", lstFood.get(position).getFoodID());
+                foodDetail.putExtra("foodID", lstFood.get(holder.getPosition()).getFoodID());
                 context.startActivity(foodDetail);
             }
         });

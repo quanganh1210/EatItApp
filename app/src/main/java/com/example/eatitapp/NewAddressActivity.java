@@ -63,7 +63,9 @@ public class NewAddressActivity extends AppCompatActivity {
         });
 
         //Places API
-        String apiKey = "AIzaSyBl3V6YriQBVBZrvPanhs47zLseoBStIQU";
+       String apiKey = "AIzaSyDSLnJTWSkuLCpDhqglwUDG8QkvS332c-U";
+        //String apiKey = "AIzaSyAWYqWofZcIbDdDFx0XCvy7vw-nnuPGCIE";
+
         if(!Places.isInitialized())
             Places.initialize(getApplicationContext(), apiKey);
         txtDetail.setFocusable(false);

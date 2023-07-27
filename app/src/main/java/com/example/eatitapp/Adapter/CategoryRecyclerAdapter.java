@@ -43,7 +43,7 @@ public class CategoryRecyclerAdapter extends RecyclerView.Adapter<CategoryRecycl
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Category category = lstCategory.get(position);
+        Category category = lstCategory.get(holder.getAdapterPosition());
         holder.txtName.setText(category.getName());
         Picasso.get().load(category.getImage()).fit().centerCrop().into(holder.img);
         holder.parent.setOnClickListener(new View.OnClickListener() {
@@ -51,8 +51,8 @@ public class CategoryRecyclerAdapter extends RecyclerView.Adapter<CategoryRecycl
             public void onClick(View v) {
                 Intent intent = new Intent(context, FoodList.class);
                 Bundle b = new Bundle();
-                b.putString("CategoryID", lstCategory.get(position).getCategoryID());
-                b.putString("CategoryName", lstCategory.get(position).getName());
+                b.putString("CategoryID", lstCategory.get(holder.getAdapterPosition()).getCategoryID());
+                b.putString("CategoryName", lstCategory.get(holder.getAdapterPosition()).getName());
                 intent.putExtras(b);
                 context.startActivity(intent);
 

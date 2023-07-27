@@ -53,7 +53,7 @@ public class ChoosePaymentRecyclerAdapter extends RecyclerView.Adapter<ChoosePay
             holder.radioButton.setChecked(payment.getSelected());
         else if(payment.getPaymentID() == Common.payment.getPaymentID()) {
             holder.radioButton.setChecked(true);
-            lastCheckedPosition = position;
+            lastCheckedPosition = holder.getPosition();
         }
         //}catch(Exception e) {
 //            Toast.makeText(context, e.toString(), Toast.LENGTH_LONG);
@@ -66,9 +66,9 @@ public class ChoosePaymentRecyclerAdapter extends RecyclerView.Adapter<ChoosePay
             public void onClick(View v) {
                 isNewRadioBtnChecked = true;
                 lstPayment.get(lastCheckedPosition).setSelected(false);
-                lstPayment.get(position).setSelected(true);
+                lstPayment.get(holder.getPosition()).setSelected(true);
                 Common.payment = payment;
-                lastCheckedPosition = position;
+                lastCheckedPosition = holder.getPosition();
                 //notifyDataSetChanged();
                 choosePaymentListener.changed();
             }

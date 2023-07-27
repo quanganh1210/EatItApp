@@ -46,7 +46,7 @@ public class EditOrderDetailAdapter extends RecyclerView.Adapter<EditOrderDetail
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        OrderDetail item = lstData.get(position);
+        OrderDetail item = lstData.get(holder.getPosition());
         DatabaseReference tbFood = FirebaseDatabase.getInstance().getReference("Food");
         tbFood.addValueEventListener(new ValueEventListener() {
             @Override
@@ -92,7 +92,7 @@ public class EditOrderDetailAdapter extends RecyclerView.Adapter<EditOrderDetail
 //
 //                    }
 //                });
-                Common.lstOrderDetail.set(position, item);
+                Common.lstOrderDetail.set(holder.getPosition(), item);
                 changeOrderItemQuantity.updateOtderSummary(food.getPrice());
             }
         });
@@ -125,11 +125,11 @@ public class EditOrderDetailAdapter extends RecyclerView.Adapter<EditOrderDetail
 //                    }
 //                });
                 if(item.getQuantity() == 0) {
-                    Common.lstOrderDetail.remove(position);
+                    Common.lstOrderDetail.remove(holder.getPosition());
                     setLstData(Common.lstOrderDetail);
                     return;
                 }
-                Common.lstOrderDetail.set(position, item);
+                Common.lstOrderDetail.set(holder.getPosition(), item);
                 changeOrderItemQuantity.updateOtderSummary(- food.getPrice());
             }
         });
